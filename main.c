@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+struct rgbColor {
+    float R;
+    float G;
+    float B;
+};
+
+
 void write_eps_header(FILE * ptr_file, char * title, int width, int height)
 {
     fprintf(ptr_file, "%s\n", "%%!PS-Adobe-3.0 EPSF-3.0");
@@ -19,6 +26,11 @@ void draw_line(FILE * ptr_file,  int x1, int y1, int x2, int y2, float width)
 int main()
 {
     char * file_path = "out.eps";
+    struct rgbColor teste;
+
+    teste.R = 245.0;
+    teste.G = 122.0;
+    teste.B = 12.0;
 
     FILE * file_ptr = fopen(file_path, "w+");
     write_eps_header(file_ptr, "lines", 600, 800);
