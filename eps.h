@@ -7,6 +7,8 @@
 
 #endif //EPS_EPS_H
 
-void write_eps_header(FILE * ptr_file, char * title, int width, int height);
+void setHeader(FILE * ptr_file, char * title, int width, int height);
 
-void draw_line(FILE * ptr_file,  int x1, int y1, int x2, int y2, float width);
+void drawLine(FILE * ptr_file,  int x1, int y1, int x2, int y2, float width);
+
+void drawCircle(FILE * ptr_file, int x, int y, float radius, int startAngle, int endAngle, float strokeWidth);

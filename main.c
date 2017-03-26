@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory.h>
 #include "eps.h"
 
 struct rgbColor {
@@ -11,6 +12,7 @@ struct rgbColor {
 int main()
 {
     char * file_path = "out.eps";
+    char * consoleCommand = "xdg-open ";
     struct rgbColor teste;
 
     teste.R = 245.0;
@@ -18,7 +20,7 @@ int main()
     teste.B = 12.0;
 
     FILE * file_ptr = fopen(file_path, "w+");
-    write_eps_header(file_ptr, "lines", 595, 842);
+    setHeader(file_ptr, "lines", 595, 842);
 
     int i;
 
@@ -27,12 +29,22 @@ int main()
         int x = 10 + rand() % 200;
         int y = 10 + rand() % 200;
 
-        draw_line(file_ptr, x, y, x + 200, y+20, 3);
+        drawLine(file_ptr, x, y, x + 200, y+20, 3);
     }
+
+    drawCircle(file_ptr,200,200,83.0,0,360,1);
 
     fclose(file_ptr);
 
-    system("xdg-open out.eps");
+    char str1[10] ;
+    char str2[11] ;
+
+    strcpy(str1, consoleCommand);
+    strcpy(str2, file_path);
+    strcat(str1, str2);
+
+    system(str1);
+    //printf("%s", str1);
 
     return 0;
 }
