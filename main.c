@@ -1,27 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "eps.h"
 
 struct rgbColor {
     float R;
     float G;
     float B;
 };
-
-
-void write_eps_header(FILE * ptr_file, char * title, int width, int height)
-{
-    fprintf(ptr_file, "%s\n", "%%!PS-Adobe-3.0 EPSF-3.0");
-    fprintf(ptr_file, "%%Title:%s\n", title);
-    fprintf(ptr_file, "%%BoundingBox: 0 0 %d %d \n", width, height);
-}
-
-
-void draw_line(FILE * ptr_file,  int x1, int y1, int x2, int y2, float width)
-{
-    fprintf(ptr_file, "newpath %d %d moveto %d %d lineto %f setlinewidth stroke\n", x1, x2, y1, y2, width );
-}
-
-
 
 int main()
 {
@@ -33,7 +18,7 @@ int main()
     teste.B = 12.0;
 
     FILE * file_ptr = fopen(file_path, "w+");
-    write_eps_header(file_ptr, "lines", 600, 800);
+    write_eps_header(file_ptr, "lines", 595, 842);
 
     int i;
 
@@ -46,6 +31,8 @@ int main()
     }
 
     fclose(file_ptr);
+
+    system("xdg-open out.eps");
 
     return 0;
 }

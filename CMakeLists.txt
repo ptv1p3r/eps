@@ -3,5 +3,5 @@ project(eps)
 
 set(CMAKE_C_STANDARD 99)
 
-set(SOURCE_FILES main.c)
+set(SOURCE_FILES main.c eps.c eps.h)
 add_executable(eps ${SOURCE_FILES})
